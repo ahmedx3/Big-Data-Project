@@ -1,0 +1,8 @@
+start-dfs.sh
+start-yarn.sh
+export HADOOP_CLASSPATH=$(hadoop classpath)
+echo $HADOOP_CLASSPATH
+javac -classpath $HADOOP_CLASSPATH -d compiled Knn.java
+jar -cvf Knn.jar -C compiled .
+hadoop jar Knn.jar Knn /project/test/test_case.txt /project/input /project/output
+hdfs dfs -rm -r /project/output
